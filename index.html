@@ -41,6 +41,42 @@
             </a></small>
         <audio controls autoplay loop src="Song.mp3"></audio>
     </div>
+    <form action="insert.php" method="post"></form>
+    <h3>Ucapan & Doa</h3>
+    <p>Berikan Ucapan Dan Doa untuk mempelai wanita dan pria</p>
+
+    <form action="" method="post">
+        <input type="text" name="nama" placeholder="Nama"> <br>
+        <textarea name="ucapan" cols="30" rows="4" placeholder="Ucapan"> </textarea> <br>
+        <select name="Keterangan">
+            <option value="" selected disabled hidden> Konfirmasi Kehadiran</option>
+            <option value="1">Ya</option>
+            <option value="2">Tidak Hadir</option>
+            <option value="3">Tidak Tau</option>
+        </select> <br>
+        <button type="submit">Kirim</button>
+    </form>
+
+    <?php
+    include 'koneksi.php';
+    $SQL2 = "SELECT * FROM bukutamu ORDER BY id DESC";
+    $hasil = $connection->query($SQL2);
+    ?>
+    <div style="border: 1px solid black;margin:auto; text-align:center; height:200px; width:300px; overflow:scroll;">
+        <?php
+
+        while ($baris = $hasil->fetch_row()) {
+        ?>
+            <div style="background:white;border: 1px solid black;border-color:black; margin:5px; padding:5px;">
+                <p style="font-weight:bold;"><?= $baris[1] ?></p>
+                <p><?= $baris[2] ?></p>
+            </div>
+
+        <?php
+        }
+
+        $hasil->free_result();
+        ?>
 </body>
 
 </html>
